@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <!-- Optionally add Bootstrap for styling -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+  <h1>Welcome to the Home Page</h1>
+  {% if user.is_authenticated %}
+    <p>Hello, {{ user.username }}!</p>
+    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+  {% else %}
+    <p>You are not logged in. Please <a href="{% url 'login' %}">login</a>.</p>
+  {% endif %}
+</body>
+</html>
