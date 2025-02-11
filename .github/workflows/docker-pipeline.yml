@@ -37,8 +37,8 @@ jobs:
 
     - name: Wait for Postgres to be ready
       run: |
+        echo "Waiting for Postgres to be ready..."
         until pg_isready -h localhost -p 5433; do
-          echo "Waiting for Postgres on port 5433..."
           sleep 2
         done
         echo "Postgres is ready!"
