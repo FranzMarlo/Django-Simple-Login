@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 def login_view(request):
     """Display the login page and authenticate user."""
@@ -15,7 +17,7 @@ def login_view(request):
             messages.error(request, 'Invalid username or password.')
     return render(request, '../templates/login.html')
 
-
+@login_required
 def home_view(request):
     """Display a simple home page for authenticated users."""
     return render(request, '../templates/home.html')
