@@ -1,2 +1,2 @@
-# Django Simple Login
+#Django Simple Login
 
