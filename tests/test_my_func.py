@@ -77,3 +77,4 @@ def test_logout_view():
     
     # Check that the session no longer contains the authenticated user's ID
     assert '_auth_user_id' not in client.session
+
