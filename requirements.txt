@@ -2,3 +2,5 @@ django
 pytest
 pytest-django
 djangorestframework
+psycopg2-binary
+psycopg
