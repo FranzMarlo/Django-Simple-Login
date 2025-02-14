@@ -43,7 +43,7 @@ jobs:
         exit 1
 
     - name: Run tests
-      run: docker-compose exec -T web pytest
+      run: docker-compose exec web pytest --reuse-db
 
     - name: Stop services
       run: docker-compose down
