@@ -15,7 +15,7 @@ jobs:
       postgres:
         image: postgres:13
         ports:
-          - 5433:5432  # Exposing Postgres on port 5433 externally
+          - 5432:5432  # Exposing Postgres on port 5433 externally
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
