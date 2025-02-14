@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-import os
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,13 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zj+qnul1qqq(y7bh41p#&_6h8v++&)&0ckmw#-&nga_-+&-ow$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Ensure DEBUG is set properly in production
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
-
-# Define STATIC_URL if not already defined
-STATIC_URL = '/static/'
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '*']
 
@@ -84,16 +78,12 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'leonaidas'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'password'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', 5432),
+        'NAME': 'leonaidas',
+        'USER': 'postgres',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '5432',       
     }
-}
-
-DATABASES['default']['TEST'] = {
-    'NAME': 'test_leonaidas',  # Optional; Django will handle it if omitted
 }
 
 
@@ -127,6 +117,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.1/howto/static-files/
+
+STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
