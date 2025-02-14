@@ -2,7 +2,6 @@ django
 pytest
 pytest-django
 djangorestframework
-dj-database-ur
 psycopg2-binary
 psycopg
 gunicorn
