@@ -62,8 +62,17 @@ jobs:
         tags: ${{ secrets.DOCKER_USERNAME }}/myproject:latest
 
   pull-and-run:
-    needs: build-and-push  # Ensures this job runs after build-and-push
+    needs: build-and-push
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: leonaidas
 
     steps:
     - name: Log in to Docker Hub
@@ -75,9 +84,14 @@ jobs:
     - name: Pull Docker image
       run: docker pull ${{ secrets.DOCKER_USERNAME }}/myproject:latest
 
-    - name: Run Docker image
-      run: docker run -d -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/myproject:latest
+    - name: Run Docker container (background)
+      run: docker run -d --name django_app -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/myproject:latest
+
+    - name: Apply database migrations
+      run: docker exec django_app python manage.py migrate
+
+    - name: Collect static files
+      run: docker exec django_app python manage.py collectstatic --noinput
 
     - name: Check running container
       run: docker ps
-
